@@ -4,11 +4,11 @@ double myPow(double x, int n)
     unsigned int i, nt = (n < 0) ? -n : n;
 
     while (nt)    {
-        for (i = 2; i < nt; i <<= 1) // keep squaring
+        for (i = 2; i < nt; i <<= 1)
             y *= y;
-        t *= y;  // accumulate the product
-        y = x;  // reset
-        nt -= i >> 1; // recalculate the exponent
+        t *= y;  
+        y = x;  
+        nt -= i >> 1; 
     }
 
     /* Return while handling 0 and negative powers */
