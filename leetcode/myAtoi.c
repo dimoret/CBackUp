@@ -6,9 +6,10 @@ Hint: Carefully consider all possible input cases. If you want a challenge, plea
 Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.
 */
 
+
 int myAtoi(char* str) {
-	long long int symbol = 1;
-	long long int result = 0;
+	int symbol = 1;
+	int result = 0;
 	int i = 0;
 	
 	if(str[i] == '\0')
@@ -59,12 +60,12 @@ int myAtoi(char* str) {
 	}
 	if((result >= 2147483648 || result <= -2147483648) && symbol == 1)
 	{
-		//printf("overflow\n");
+		//printf("overflow\n");//for test
 		return 2147483647;
 	}
 	if((result >= 2147483648 || result <= -2147483648) && symbol == -1)
 	{
-		//printf("overflow\n");
+		//printf("overflow\n");//for test
 		return -2147483648;
 	}
 	return symbol*result;
