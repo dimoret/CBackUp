@@ -5,11 +5,11 @@ Hint: Carefully consider all possible input cases. If you want a challenge, plea
 
 Notes: It is intended for this problem to be specified vaguely (ie, no given input specs). You are responsible to gather all the input requirements up front.
 */
+
 int myAtoi(char* str) {
 	long long int symbol = 1;
 	long long int result = 0;
 	int i = 0;
-	long long int bound = 2147483648;
 	
 	if(str[i] == '\0')
 		return 0;
@@ -18,10 +18,12 @@ int myAtoi(char* str) {
 	{
 		if(str[i] == ' ')
 		{
+			if((str[i-1] >= '0' && str[i-1] <= '9') && i > 0)
+			{break;}
 			i++;
 			continue;
 		}
-		if(str[i] == '0' && (str[i-1] <'0' || str[i] > '9') )
+		if(str[i] == '0' && (str[i-1] <'0' || str[i-1] > '9') )
 		{
 			if(str[i+1] < '0' || str[i+1] > '9')
 			{
@@ -42,7 +44,7 @@ int myAtoi(char* str) {
 			symbol = -1;
 			continue;
 		}
-		if(str[i] < '0' || str[i] > '9')
+		if((str[i] < '0' || str[i] > '9') && (str[i] != ' '))
 		{
 			if(str[i-1] >= '0' && str[i-1] <= '9')
 			{break;}
@@ -55,7 +57,15 @@ int myAtoi(char* str) {
 			continue;
 		}
 	}
-	if(symbol*result < 0)
-		return (unsigned)(bound + (symbol*result + bound ));
-	else return symbol*result;
+	if((result >= 2147483648 || result <= -2147483648) && symbol == 1)
+	{
+		//printf("overflow\n");
+		return 2147483647;
+	}
+	if((result >= 2147483648 || result <= -2147483648) && symbol == -1)
+	{
+		//printf("overflow\n");
+		return -2147483648;
+	}
+	return symbol*result;
 }
