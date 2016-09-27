@@ -10,7 +10,5 @@ double myPow(double x, int n)
         y = x;  
         nt -= i >> 1; 
     }
-
-    /* Return while handling 0 and negative powers */
     return (n == 0) ? 1 : ((n > 0) ? t : 1 / t);
 }
