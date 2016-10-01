@@ -16,7 +16,7 @@ int* countBits(int num, int* returnSize) {
 	BitArray[0] = 0;
 	for(i;i <= num;i++)
 	{	
-		BitArray[i] = BitArray[i>>1] + (i&1);
+		BitArray[i] = BitArray[i>>1] + (i&1);//除2等价于右移一位，i&1用来判断末位是否为1
 	}
 	*returnSize = num + 1;
 	return BitArray;
